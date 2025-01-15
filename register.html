@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Window</title>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            text-align: center;
+        }
+        
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        .message {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Registration</h2>
+        <form id="registrationForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit" class="btn">Send Code to Email</button>
+        </form>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init('your-public-key'); // שים כאן את המפתח הציבורי שלך
+
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                alert("Please fill in all fields");
+                return;
+            }
+
+            // כאן נשלח את האימייל עם קוד
+            const verificationCode = Math.floor(100000 + Math.random() * 900000); // יצירת קוד אקראי בן 6 ספרות
+
+            const templateParams = {
+                to_email: email,
+                verification_code: verificationCode
+            };
+
+            emailjs.send('service_1ck74kd', 'your-template-id', templateParams)
+                .then(function(response) {
+                    document.getElementById('message').innerText = "Verification code has been sent to your email!";
+                }, function(error) {
+                    document.getElementById('message').innerText = "Error sending email.";
+                    console.log(error);
+                });
+        });
+    </script>
+
+</body>
+
+</html>
