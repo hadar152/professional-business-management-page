@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional business management</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            user-select: none;
+        }
+        
+        .category {
+            width: 250px;
+            height: 600px;
+            background-color: #d8d8d8af;
+            color: #0c3d00;
+            border-right: 3px rgba(107, 107, 107, 0.753) solid;
+            padding: 20px;
+            margin-right: 20px;
+        }
+        
+        .category h2 {
+            color: #006400;
+            margin-top: 0;
+        }
+        
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        
+        .category ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .category ul li {
+            margin-bottom: 10px;
+        }
+        
+        .category ul li:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="category">
+        <h2>Categories</h2>
+        <ul>
+            <li id="openEmployees">Employees</li>
+            <li id="openAi">BusinnesAI</li>
+            <li id="openTrends">What's the hottest thing to sell today</li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('openTrends').addEventListener('click', function() {
+            const secondWindow = window.open('https://trends.google.com/trends/', 'width=1200,height=800');
+        });
+        document.getElementById("openEmployees").addEventListener('click', function() {
+            const secondWindow = window.open('employees.html', 'width=1200,height=800');
+        });
+    </script>
+</body>
+
+</html>
